@@ -10,6 +10,8 @@ $GITHUB_PAT="xxxx"
 $GITHUB_URL="https://api.github.com"
 # or for GHE on-prem
 # GITHUB_URL="https://github.mycompany.local/api/v3"
+# replace below with the latest version
+$RUNNER_VER="2.274.2"
 
 $group = "Administrators"
 
@@ -91,7 +93,7 @@ Write-Output "Starting installation of Github Runner"
 Set-Location C:\
 mkdir a
 Set-Location a
-$RUNNER_VER="2.274.2"
+
 Invoke-WebRequest -Uri "https://github.com/actions/runner/releases/download/v$RUNNER_VER/actions-runner-win-x64-$RUNNER_VER.zip" -Proxy "http://my-proxy.loca:8080" -OutFile "actions-runner-win-x64-$RUNNER_VER.zip" -UseBasicParsing
 [System.IO.Compression.ZipFile]::ExtractToDirectory("$PWD/actions-runner-win-x64-$RUNNER_VER.zip", "$PWD")
 $githubheaders = @{"Authorization"="token $GITHUB_PAT"}
